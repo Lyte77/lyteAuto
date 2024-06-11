@@ -1,0 +1,31 @@
+{% load static %}
+{% load django_bootstrap5 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+
+    <h1>My shop</h1>
+    {% if user.is_authenticated %}
+        <p>Hello , {{ user.username }}!</p>
+        <form action="{% url 'users:logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    {% else %}
+        <p>Sign up or login</p>
+        <a href="{% url  'users:login' %}">Log in</a>
+    {% endif %}
+
+    
+    {% block content%}
+    {% endblock %}
+    
+</body>
+</html>

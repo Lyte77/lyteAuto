@@ -1,0 +1,23 @@
+{% extends 'shop/base_generic.html' %}
+
+{% block content %}
+<h1>Home page</h1>
+
+<form action="{% url 'shop:home' %}" method="get">
+    {{ form.as_p }}
+    <button type="submit">Search</button>
+
+<a href="{% url 'shop:home' %}">All cars</a>
+</form>
+{% for car in cars %}
+  <div>
+    <p>{{ car.name}}</p>
+    <p>{{ car.category }}</p>
+
+  </div>
+{% empty %}
+  <p>No cars found</p>
+ 
+{% endfor %}
+
+{% endblock%}

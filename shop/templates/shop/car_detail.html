@@ -1,0 +1,43 @@
+{% extends 'shop/base_generic.html' %}
+
+
+{% block title %} {{ car.name }} {% endblock title %}
+{% block content %}
+
+< class="container">
+    <h2 class="mt-5"> 
+        {{ car.name }}
+    </h2>
+    <div class="row">
+        <div class="col-md-6">
+            <img src="" alt="">
+        </div>
+        <div class="col-md-6">
+
+            <p>{{ car.price }}</p>
+            <p>{{ car.description }}</p>
+            <a href="{% url 'shop:car_update' car.id %}">Update</a>
+            <a href="{% url 'shop:remove_car' car.id %}">Delete</a>
+            <a href="{% url 'cart:add_to_cart' car.id%}">Add to cart</a>
+        </div>
+    </div>
+
+        <h2 class="mt-5">Related Cars</h2>
+        <div class="row">
+
+            {% for related_car in related_cars %}
+                <h3><a href="{% url 'shop:car_detail' related_car.id %}">
+                    {{ related_car.name }}
+                    <p>Price: ${{ related_car.price }}</p>
+                </a>
+                </h3>
+            {% empty %}
+                <p>No related cars found.</p>
+            {% endfor %}    
+        </div>
+
+</div>
+
+    
+
+{% endblock %}

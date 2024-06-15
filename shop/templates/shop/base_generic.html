@@ -10,22 +10,43 @@
     {% bootstrap_javascript %}
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
 
-    <h1>My shop</h1>
-    {% if user.is_authenticated %}
-        <p>Hello , {{ user.username }}!</p>
-        <form action="{% url 'users:logout' %}" method="post">
-            {% csrf_token %}
-            <button type="submit">Logout</button>
-        </form>
-    {% else %}
-        <p>Sign up or login</p>
-        <a href="{% url  'users:login' %}">Log in</a>
-    {% endif %}
-
+        <a href="{% url 'shop:home' %}">
     
-    {% block content%}
-    {% endblock %}
+            <h1>My shop</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <p>Hello , {{ user.username }}!</p>
+
+                    <li class="nav-item"><a class="nav-link" href="{% url 'shop:car_add' %}">Add Car</a></li>
+    
+                    <form action="{% url 'users:logout' %}" method="post">
+                        {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+                <li class="nav-item"><a class="nav-link" href="{% url 'cart:cart_detail' %}">Cart</a></li>
+
+                {% else %}
+                    <p>Sign up or login</p>
+                    <a href="{% url  'users:login' %}">Log in</a>
+                    <a href="#">Register</a>
+                {% endif %}
+            </ul>
+           
+        </div>
+    </nav>
+
+    <div class="container">
+
+        {% block content%}
+        {% endblock %}
+    </div>
     
 </body>
 </html>

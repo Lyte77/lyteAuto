@@ -1,11 +1,14 @@
 {% extends 'shop/base_generic.html' %}
 
 {% block content %}
-    <div>
-        <form action="" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Logun</button>
-        </form>
-    </div>
+<div class="container pt-5">
+    
+         <form action="" method="post">
+             {% csrf_token %}
+             {{ form.as_p }}
+             <button type="submit">Logun</button>
+         </form>
+
+</div>
+    
 {% endblock %}

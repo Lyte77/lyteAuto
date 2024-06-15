@@ -1,7 +1,0 @@
-django
-djangorestframework
-pillow
-
-requests
-django-bootstrap4
-django-bootstrap5
